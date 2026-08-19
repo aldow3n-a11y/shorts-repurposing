@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Build a Faceless YouTube Shorts Pipeline on Windows (Free Stack + Real Numbers)</title>
+<meta name="description" content="Complete free stack for building a faceless YouTube Shorts pipeline on Windows: Python + ffmpeg vertical converter (real filter chain), free TTS, free stock b-roll APIs, and the measured view data that shows why volume alone does not work.">
+<link rel="canonical" href="https://aldow3n-a11y.github.io/shorts-repurposing/guide.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Build a Faceless YouTube Shorts Pipeline on Windows (Free Stack + Real Numbers)">
+<meta property="og:description" content="Complete free stack for building a faceless YouTube Shorts pipeline on Windows: Python + ffmpeg vertical converter (real filter chain), free TTS, free stock b-roll APIs, and the measured view data that shows why volume alone does not work.">
+<meta property="og:url" content="https://aldow3n-a11y.github.io/shorts-repurposing/guide.html">
+<meta property="og:image" content="https://aldow3n-a11y.github.io/shorts-repurposing/poster.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Build a Faceless YouTube Shorts Pipeline on Windows (Free Stack + Real Numbers)">
+<meta name="twitter:description" content="Complete free stack for building a faceless YouTube Shorts pipeline on Windows: Python + ffmpeg vertical converter (real filter chain), free TTS, free stock b-roll APIs, and the measured view data that shows why volume alone does not work.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+ "headline":"How to Build a Faceless YouTube Shorts Pipeline on Windows (Free Stack + Real Numbers)",
+ "description":"Complete free stack for building a faceless YouTube Shorts pipeline on Windows: Python + ffmpeg vertical converter (real filter chain), free TTS, free stock b-roll APIs, and the measured view data that shows why volume alone does not work.",
+ "url":"https://aldow3n-a11y.github.io/shorts-repurposing/guide.html",
+ "datePublished":"2026-08-20","dateModified":"2026-08-20",
+ "inLanguage":"en",
+ "keywords":"faceless youtube shorts pipeline windows, ffmpeg vertical video, free tts voiceover, pexels api b-roll, youtube shorts automation",
+ "proficiencyLevel":"Beginner",
+ "author":{"@type":"Person","name":"Shorts Repurposing (AI-assisted, human-reviewed)"},
+ "publisher":{"@type":"Organization","name":"Shorts Repurposing"}}
+</script>
+<style>
+:root{--bg:#0b0d10;--card:#14181d;--ink:#e8edf2;--dim:#9aa7b4;--acc:#4fd1c5;--line:#232a31}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main,header,footer{max-width:820px;margin:0 auto;padding:0 20px}
+header{padding-top:44px}
+h1{font-size:2.05rem;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:1.35rem;margin:2.2em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.35em}
+h3{font-size:1.05rem;margin:1.6em 0 .3em;color:var(--acc)}
+p,li{color:#d5dde5}
+a{color:var(--acc)}
+.lede{font-size:1.1rem;color:var(--dim)}
+.meta{color:var(--dim);font-size:.85rem}
+pre{background:#0f1317;border:1px solid var(--line);border-left:3px solid var(--acc);
+ padding:14px;overflow-x:auto;font-size:.82rem;line-height:1.5;border-radius:6px}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:1em 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:#171c22;color:var(--acc)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:1.4em 0}
+.warn{border-left:3px solid #f6ad55}
+.cta{background:linear-gradient(135deg,#14181d,#1b2b2a);border:1px solid var(--acc);
+ border-radius:10px;padding:20px;margin:2.2em 0}
+.btn{display:inline-block;background:var(--acc);color:#07110f;font-weight:700;
+ padding:11px 20px;border-radius:7px;text-decoration:none;margin-top:8px}
+footer{border-top:1px solid var(--line);margin-top:3em;padding:22px 20px 50px;color:var(--dim);font-size:.85rem}
+ul{padding-left:1.2em}
+</style>
+</head>
+<body>
+<header>
+<p class="meta"><a href="./">&larr; Shorts repurposing service</a> &middot; free guide</p>
+<h1>How to build a faceless YouTube Shorts pipeline on Windows</h1>
+<p class="lede">The exact free stack &mdash; Python + ffmpeg, free text-to-speech, free stock
+b-roll APIs &mdash; plus the part nobody publishes: what the view counts actually did afterwards.
+Every command below is from a pipeline that is running in production, and every number is measured,
+not estimated.</p>
+<p class="meta">Updated 2026-08-20 &middot; ~9 min read &middot;
+<strong>Written with AI assistance and human-reviewed.</strong> See the
+<a href="./#disclosure">disclosure</a>.</p>
+</header>
+<main>
+
+<h2>What you are building</h2>
+<p>One long 16:9 video goes in. Vertical 1080&times;1920 clips come out &mdash; each one a
+<em>distinct</em> moment with a clean blurred background, ready to post as a YouTube Short,
+a Reel or a TikTok. It runs from one command on Windows, on a laptop, with no GPU.</p>
+<p>Four free components do all of the work:</p>
+<ul>
+<li><strong>Python + ffmpeg</strong> &mdash; the actual video math (the only hard requirement).</li>
+<li><strong>A free TTS voice</strong> &mdash; for narration when you are generating original
+video rather than clipping an existing one. Fish Audio has a free tier that sounds human.</li>
+<li><strong>Pexels and Pixabay APIs</strong> &mdash; free stock b-roll, pulled programmatically
+so nothing is downloaded by hand. Both issue API keys at no cost.</li>
+<li><strong>Remotion</strong> (optional) &mdash; React-based renderer, if you want animated
+lower-thirds and on-screen charts instead of plain cuts.</li>
+</ul>
+
+<h2>Step 0 &mdash; Windows prerequisites</h2>
+<p>Install Python 3.10+ and ffmpeg, then confirm ffmpeg is on <code>PATH</code>:</p>
+<pre><code>winget install --id Gyan.FFmpeg -e
+winget install --id Python.Python.3.11 -e
+ffmpeg -version</code></pre>
+<div class="box warn">
+<strong>Windows-specific gotcha that costs people an evening.</strong> If you run this from
+git-bash / MSYS, path arguments are <em>not</em> translated for native programs. <code>ffmpeg
+/c/Users/you/clip.mp4</code> fails while <code>cd /c/Users/you</code> works. Pass native
+forward-slash paths (<code>C:/Users/you/clip.mp4</code>) to ffmpeg, node and python.
+</div>
+
+<h2>Step 1 &mdash; the core 16:9 &rarr; 9:16 converter</h2>
+<p>This is the whole trick, and it is one ffmpeg filter chain. Scale a copy of the frame up to
+fill the vertical canvas, blur and darken it as the background, then overlay the original at
+full width, centred. No black bars, and captions burned into the source stay readable because
+the foreground keeps its full width.</p>
+<p>The filter chain used in production:</p>
+<pre><code>[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=20:2,eq=brightness=-0.18[bg];[0:v]scale=1080:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2</code></pre>
+<p>Wrapped into a runnable command:</p>
+<pre><code>ffmpeg -y -hide_banner -loglevel error -i input.mp4 \
+  -filter_complex "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=20:2,eq=brightness=-0.18[bg];[0:v]scale=1080:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2" \
+  -c:v libx264 -preset veryfast -crf 21 -c:a aac -b:a 128k \
+  -movflags +faststart short.mp4</code></pre>
+<p>Reading it left to right: <code>scale=1080:1920:force_original_aspect_ratio=increase</code>
+then <code>crop=1080:1920</code> gives a background that fills the frame with no letterboxing;
+<code>boxblur=20:2</code> and <code>eq=brightness=-0.18</code> push it back visually so the
+foreground reads; <code>scale=1080:-2</code> sizes the foreground to full width with an
+even height (mandatory for yuv420p); <code>overlay=(W-w)/2:(H-h)/2</code> centres it.</p>
+<p>One conversion takes roughly 20&ndash;60 seconds on a mid-range laptop CPU. That is the base
+unit of the whole pipeline: one long video in, one vertical Short out, at the cost of running a
+command.</p>
+
+<h3>Trimming to a moment</h3>
+<p>Add <code>-ss</code> (start) and <code>-t</code> (duration) <em>before</em> <code>-i</code>
+for a fast keyframe seek:</p>
+<pre><code>ffmpeg -y -ss 00:04:12 -t 42 -i input.mp4 -filter_complex "..." out_03.mp4</code></pre>
+
+<h2>Step 2 &mdash; batch, and let audio pick the cuts</h2>
+<p>Doing clips one at a time works but does not scale. The useful version scans the source's
+<strong>audio energy</strong> and treats the peaks &mdash; laughter, emphasis, the moment someone
+lands a point &mdash; as clip boundaries. The audio tells you where the distinct moments are, so
+you are not guessing with a scrubber.</p>
+<p>A minimal, dependency-free way to get an energy curve out of ffmpeg:</p>
+<pre><code># dump mono 8 kHz PCM, then find the loudest windows in Python
+ffmpeg -i input.mp4 -ac 1 -ar 8000 -f s16le -y audio.raw</code></pre>
+<pre><code>import array, statistics
+pcm = array.array("h"); pcm.frombytes(open("audio.raw","rb").read())
+W = 8000                                    # 1-second windows
+energy = [sum(abs(v) for v in pcm[i:i+W])/W for i in range(0, len(pcm)-W, W)]
+thresh = statistics.mean(energy) * 1.35
+peaks  = [i for i, e in enumerate(energy) if e > thresh]   # peak seconds</code></pre>
+<p>Group adjacent peak seconds, keep groups long enough to be a clip, expand each by a couple of
+seconds of lead-in, and you have a cut list you can feed straight into Step 1.</p>
+
+<div class="box">
+<h3>Why &ldquo;distinct&rdquo; is a compliance requirement, not a style choice</h3>
+<p>YouTube tightened its <em>inauthentic content</em> policy in July 2025 and enforced it in a
+January 2026 wave: mass-produced, templated or minimally-modified reused content is not eligible
+for monetisation. A Short that is your long video re-cropped five times is exactly that pattern.
+Five Shorts that are five <em>different</em> high-energy moments, each with its own hook, are
+not. Same source file, completely different risk profile &mdash; so build the batch step to
+enforce distinct moments rather than duplicating one.</p>
+</div>
+
+<h2>Step 3 &mdash; a before/after proof reel</h2>
+<p>Stack the raw source next to the finished vertical clip and render 30 seconds of it. Same
+pipeline, one extra filter:</p>
+<pre><code>ffmpeg -y -i long.mp4 -i short.mp4 -filter_complex \
+ "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960[a];\
+  [1:v]scale=540:960[b];[a][b]hstack=inputs=2" -t 30 -an reel.mp4</code></pre>
+<p>If you ever do this for clients, that reel <em>is</em> your storefront: input and output in
+one frame, judged in half a second.</p>
+
+<h2>Step 4 &mdash; the measured part (this is the bit that changes the plan)</h2>
+<p>Here is what four nights of running this produced, published honestly, with no promotion.
+These are our own numbers from our own channel.</p>
+<table>
+<tr><th>What we measured</th><th>Result</th></tr>
+<tr><td>First episode, 4 hours after going public</td><td><strong>0 views</strong></td></tr>
+<tr><td>Where it ranked on a search for its own exact title</td><td><strong>25th of 25</strong></td></tr>
+<tr><td>Channel findable by searching its name</td><td><strong>No</strong></td></tr>
+<tr><td>AI-explainer keywords scored for winnability</td><td><strong>8 of 8 saturated</strong>
+ (incumbents 15k&ndash;947k subs, title-match 0.8&ndash;1.0)</td></tr>
+<tr><td>Views needed for 4,000 watch hours at ~90 s per view</td><td><strong>~320,000</strong></td></tr>
+<tr><td>Views needed for the same 4,000 hours at ~9 min per view</td><td><strong>~53,000</strong></td></tr>
+</table>
+<p>Three conclusions follow directly, and they contradict most advice on this topic:</p>
+<ul>
+<li><strong>Tags do not buy rank on a channel with no history.</strong> Ranking last on your own
+exact title is not a metadata problem, it is an authority problem. No amount of keyword stuffing
+fixes it.</li>
+<li><strong>Length is a 6&times; lever on the hardest monetisation gate.</strong> 320,000 views
+versus 53,000 for the same 4,000 hours. Chasing dozens of 60-second Shorts is the most expensive
+possible route to the watch-hour threshold &mdash; and Shorts pay far less per view than long-form
+in the first place.</li>
+<li><strong>Pick topics where the title-match is zero.</strong> The only queries worth building
+for are ones where the top results do <em>not</em> already answer the exact question. Score the
+competition before you write a script &mdash; pulling ten search results costs a fraction of the
+API budget of a single upload, and hours less than a render.</li>
+</ul>
+<p>How to score a query yourself, cheaply, with the YouTube Data API: request
+<code>search.list</code> for the query, then <code>channels.list</code> for the result owners,
+and compute (a) median subscriber count of the top 10 and (b) the fraction of those titles that
+already contain your target phrasing. High subs + high title-match = do not bother. Low
+title-match against healthy view counts on adjacent videos = unserved intent.</p>
+
+<h2>The honest takeaway</h2>
+<p>The pipeline is the asset. The channel is not.</p>
+<p>A channel needs authority, and authority takes time you cannot shortcut with tooling. A
+<em>buyer</em> of short-form clips needs one thing only: a working deliverable &mdash; which this
+stack produces in under a minute per clip. The same tool that is slow to monetise as a channel is
+immediately sellable as a service. If your goal is income rather than a following, build the
+pipeline and sell the output.</p>
+
+<div class="cta">
+<h3 style="margin-top:0">Want the output without building it?</h3>
+<p>Send one long video, get back ready-to-post vertical Shorts with burned-in captions &mdash;
+distinct moments, not re-crops &mdash; plus the before/after reel. Pricing, a 30-second example
+and the order form are on the offer page. AI-assisted, human-reviewed before anything ships.</p>
+<a class="btn" href="./">See pricing &amp; the 30-second demo &rarr;</a>
+</div>
+
+<h2>FAQ</h2>
+<h3>Does this need a GPU?</h3>
+<p>No. <code>libx264</code> with <code>-preset veryfast</code> handles a one-minute vertical clip
+in well under a minute on a normal laptop CPU. GPU encoders (<code>h264_nvenc</code>) are faster
+but change quality-per-bitrate; CPU is the safer default.</p>
+<h3>Will the captions from my long video still be readable?</h3>
+<p>Yes &mdash; that is the reason the foreground is scaled to full width instead of being cropped.
+Burned-in captions keep their horizontal scale.</p>
+<h3>Is any of this against YouTube's rules?</h3>
+<p>Automating your <em>own</em> rendering and publishing is fine. What is penalised is
+mass-produced, minimally-modified, reused content. Make each clip a genuinely different moment
+with its own hook, disclose synthetic voice or AI assistance, and you are on the right side of
+the policy.</p>
+<h3>What does the free tier actually cover?</h3>
+<p>ffmpeg and Python are free outright. Pexels and Pixabay issue free API keys with generous
+rate limits. Fish Audio has a free TTS tier. The YouTube Data API gives 10,000 quota units per
+day &mdash; note an upload costs roughly 1,600 of them, so about six uploads a day is the real
+ceiling, and it is worth probing your remaining quota before an upload rather than eating a 403
+that still burns the units.</p>
+
+</main>
+<footer>
+<p><strong>Honesty note:</strong> this guide was written with AI assistance and reviewed by a
+human before publishing. The commands are from a pipeline in production; the numbers in
+&ldquo;Step 4&rdquo; are our own measurements, not estimates or industry averages.</p>
+<p><a href="./">Shorts repurposing service</a> &middot;
+<a href="./#order">Request clips</a> &middot;
+<a href="./sitemap.xml">sitemap</a></p>
+</footer>
+</body>
+</html>
