@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aldow3n-a11y.github.io/shorts-repurposing/sitemap.xml

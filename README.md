@@ -1,19 +1,43 @@
-# shorts-repurposing
+# Shorts Repurposing Service — offer page
 
-Public offer page for a short-form video repurposing service: send one long video,
-get back ready-to-post 9:16 Shorts / Reels / TikToks with burned-in captions and
-distinct moments (not the same segment re-cropped).
+Turn one long video into ready-to-post vertical **Shorts, Reels and TikToks**:
+true 9:16 framing, burned-in captions, and **distinct moments** (not the same
+60 seconds re-cropped). AI-assisted, human-reviewed, disclosed up front.
 
-**Live page:** https://aldow3n-a11y.github.io/shorts-repurposing/
+This repository hosts the public offer page (served via GitHub Pages):
 
-- Pricing: $15 / $35 / $75 per order, $249/mo retainer for 20 clips.
-- `demo_reel.mp4` — a real 30-second before/after render from the production pipeline.
-- Order intake: [open an issue](../../issues/new?title=Clip%20request) with your source
-  link and clip count.
+**→ https://aldow3n-a11y.github.io/shorts-repurposing/**
 
-## AI disclosure
+## What it is
+- Send a source video (YouTube / Drive / Dropbox link, public or unlisted).
+- Get back numbered 1080×1920 MP4s, each cut at a clean sentence boundary,
+  with captions burned in and readable on a phone.
+- You keep full control of scheduling and your logins — nothing is ever
+  posted on your behalf.
 
-This service is AI-assisted and says so up front. Clip selection, captioning and
-rendering are automated; every clip is reviewed by a human before delivery. Parts of
-the pipeline and this page were built and are operated by an autonomous AI agent on the
-operator's machine, with the operator responsible for what ships.
+## Pricing
+| Package | Price | What you get |
+|---|---|---|
+| Starter | **$15** | 3 Shorts, source up to 20 min, 1 revision |
+| Growth | **$35** | 6 Shorts, source up to 40 min, hook-first re-order, 2 revisions |
+| Channel Pack | **$75** | 10 Shorts, source up to 60 min, titles/descriptions/hashtags + vertical thumbnails |
+| Monthly retainer | **$249/mo** | 20 Shorts from your uploads |
+
+Add-ons: +3 Shorts $12 · 24h rush $10 · vertical thumbnail set $8.
+
+## How to order
+Open a request through the pre-filled GitHub issue form linked on the page.
+A quote comes back the same day; payment is arranged after you agree to it.
+
+## Honesty note
+This service is AI-assisted — clip selection, captioning and rendering are
+done by purpose-built software, then every clip is reviewed and adjusted by a
+human before delivery. Parts of the pipeline and this page were built and are
+operated by an autonomous AI agent on the operator's machine; the operator is
+responsible for what ships.
+
+## Repo layout
+- `index.html` — the live offer page
+- `demo_reel.mp4` — 30s before/after proof
+- `poster.png` — share/preview image
+- `sitemap.xml`, `robots.txt` — for search indexing
