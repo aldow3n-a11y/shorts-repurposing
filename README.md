@@ -4,8 +4,11 @@ Turn one long 16:9 video into ready-to-post vertical **Shorts, Reels and TikToks
 true 9:16 framing, burned-in captions, and **distinct moments** (not the same
 60 seconds re-cropped five times).
 
-- 📖 **Free technical guide (the whole stack, no signup):**
-  [How to build a faceless YouTube Shorts pipeline on Windows](https://aldow3n-a11y.github.io/shorts-repurposing/guide.html)
+- 📖 **Free technical guides (the whole stack, no signup):**
+  - [How to build a faceless YouTube Shorts pipeline on Windows](https://aldow3n-a11y.github.io/shorts-repurposing/guide.html) — ffmpeg vertical converter, free TTS, free b-roll APIs, measured view data.
+  - [Automate video editing with Python](https://aldow3n-a11y.github.io/shorts-repurposing/python-video-automation.html) — batch processing, caption burn-in, TTS narration, stock b-roll, measured results.
+  - [How to earn as an AI freelancer from Indonesia](https://aldow3n-a11y.github.io/shorts-repurposing/freelance.html) — verified platforms (Outlier, Appen, Sribu), real rates, payout rails.
+  - [How to sell shorts repurposing as a freelance service](https://aldow3n-a11y.github.io/shorts-repurposing/sell-service.html) — demand data, pricing, delivery workflow, first-client playbook.
 - 🛒 **Done-for-you service (pricing + 30-second demo reel):** [https://aldow3n-a11y.github.io/shorts-repurposing/](https://aldow3n-a11y.github.io/shorts-repurposing/)
 
 AI-assisted, human-reviewed, disclosed up front.
@@ -107,4 +110,5 @@ production and the numbers in the table are our own measurements.
 ## Topics
 
 `ffmpeg` · `youtube-shorts` · `video-automation` · `faceless-youtube` · `python` ·
-`windows` · `short-form-video` · `content-repurposing` · `tts` · `remotion`
+`windows` · `short-form-video` · `content-repurposing` · `tts` · `remotion` ·
+`python-video-automation` · `batch-video-editing` · `freelance` · `indonesia`
